@@ -1,6 +1,6 @@
-import { ShareGPTSubmitBodyInterface } from '@type/api';
-import { ConfigInterface, MessageInterface } from '@type/chat';
-import { isAzureEndpoint } from '@utils/api';
+import {ShareGPTSubmitBodyInterface} from '@type/api';
+import {ConfigInterface, MessageInterface} from '@type/chat';
+import {isAzureEndpoint} from '@utils/api';
 
 export const getChatCompletion = async (
   endpoint: string,
@@ -94,7 +94,7 @@ export const getChatCompletionStream = async (
     if (text.includes('model_not_found')) {
       throw new Error(
         text +
-          '\nMessage from Better ChatGPT:\nPlease ensure that you have access to the GPT-4 API!'
+        '\nMessage from Better ChatGPT:\nPlease ensure that you have access to the GPT-4 API!'
       );
     } else {
       throw new Error(
@@ -129,7 +129,7 @@ export const submitShareGPT = async (body: ShareGPTSubmitBodyInterface) => {
   });
 
   const response = await request.json();
-  const { id } = response;
+  const {id} = response;
   const url = `https://shareg.pt/${id}`;
   window.open(url, '_blank');
 };

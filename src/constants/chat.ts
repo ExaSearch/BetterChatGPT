@@ -1,5 +1,5 @@
-import { v4 as uuidv4 } from 'uuid';
-import { ChatInterface, ConfigInterface, ModelOptions } from '@type/chat';
+import {v4 as uuidv4} from 'uuid';
+import {ChatInterface, ConfigInterface, ModelOptions} from '@type/chat';
 import useStore from '@store/store';
 
 const date = new Date();
@@ -22,7 +22,7 @@ export const modelOptions: ModelOptions[] = [
   'gpt-4',
   'gpt-4-32k',
   // 'gpt-3.5-turbo-0301',
-  // 'gpt-4-0314',
+  'gpt-4-0314',
   // 'gpt-4-32k-0314',
 ];
 
@@ -39,28 +39,28 @@ export const modelMaxToken = {
 
 export const modelCost = {
   'gpt-3.5-turbo': {
-    prompt: { price: 0.002, unit: 1000 },
-    completion: { price: 0.002, unit: 1000 },
+    prompt: {price: 0.002, unit: 1000},
+    completion: {price: 0.002, unit: 1000},
   },
   'gpt-3.5-turbo-0301': {
-    prompt: { price: 0.002, unit: 1000 },
-    completion: { price: 0.002, unit: 1000 },
+    prompt: {price: 0.002, unit: 1000},
+    completion: {price: 0.002, unit: 1000},
   },
   'gpt-4': {
-    prompt: { price: 0.03, unit: 1000 },
-    completion: { price: 0.06, unit: 1000 },
+    prompt: {price: 0.03, unit: 1000},
+    completion: {price: 0.06, unit: 1000},
   },
   'gpt-4-0314': {
-    prompt: { price: 0.03, unit: 1000 },
-    completion: { price: 0.06, unit: 1000 },
+    prompt: {price: 0.03, unit: 1000},
+    completion: {price: 0.06, unit: 1000},
   },
   'gpt-4-32k': {
-    prompt: { price: 0.06, unit: 1000 },
-    completion: { price: 0.12, unit: 1000 },
+    prompt: {price: 0.06, unit: 1000},
+    completion: {price: 0.12, unit: 1000},
   },
   'gpt-4-32k-0314': {
-    prompt: { price: 0.06, unit: 1000 },
-    completion: { price: 0.12, unit: 1000 },
+    prompt: {price: 0.06, unit: 1000},
+    completion: {price: 0.12, unit: 1000},
   },
 };
 
@@ -83,9 +83,9 @@ export const generateDefaultChat = (
   title: title ? title : 'New Chat',
   messages:
     useStore.getState().defaultSystemMessage.length > 0
-      ? [{ role: 'system', content: useStore.getState().defaultSystemMessage }]
+      ? [{role: 'system', content: useStore.getState().defaultSystemMessage}]
       : [],
-  config: { ...useStore.getState().defaultChatConfig },
+  config: {...useStore.getState().defaultChatConfig},
   titleSet: false,
   folder,
 });

@@ -1,5 +1,5 @@
-import { Prompt } from './prompt';
-import { Theme } from './theme';
+import {Prompt} from './prompt';
+import {Theme} from './theme';
 
 export type Role = 'user' | 'assistant' | 'system';
 export const roles: Role[] = ['user', 'assistant', 'system'];
@@ -49,9 +49,9 @@ export interface Folder {
   color?: string;
 }
 
-export type ModelOptions = 'gpt-4' | 'gpt-4-32k' | 'gpt-3.5-turbo';
-// | 'gpt-3.5-turbo-0301';
-// | 'gpt-4-0314'
+export type ModelOptions = 'gpt-4' | 'gpt-4-32k' | 'gpt-3.5-turbo'
+  // | 'gpt-3.5-turbo-0301';
+  | 'gpt-4-0314';
 // | 'gpt-4-32k-0314'
 
 export type TotalTokenUsed = {

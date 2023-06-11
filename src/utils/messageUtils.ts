@@ -1,8 +1,8 @@
-import { MessageInterface, ModelOptions, TotalTokenUsed } from '@type/chat';
+import {MessageInterface, ModelOptions, TotalTokenUsed} from '@type/chat';
 
 import useStore from '@store/store';
 
-import { Tiktoken } from '@dqbd/tiktoken/lite';
+import {Tiktoken} from '@dqbd/tiktoken/lite';
 const cl100k_base = await import('@dqbd/tiktoken/encoders/cl100k_base.json');
 
 const encoder = new Tiktoken(
@@ -28,7 +28,7 @@ export const getChatGPTEncoding = (
 
   const serialized = [
     messages
-      .map(({ role, content }) => {
+      .map(({role, content}) => {
         return `<|im_start|>${role}${roleSep}${content}<|im_end|>`;
       })
       .join(msgSep),
@@ -69,18 +69,18 @@ export const limitMessageTokens = (
     const count = countTokens([messages[i]], model);
     if (count + tokenCount > limit) break;
     tokenCount += count;
-    limitedMessages.unshift({ ...messages[i] });
+    limitedMessages.unshift({...messages[i]});
   }
 
   // Process first message
   if (retainSystemMessage) {
     // Insert the system message in the third position from the end
-    limitedMessages.splice(-3, 0, { ...messages[0] });
+    limitedMessages.splice(-3, 0, {...messages[0]});
   } else if (!isSystemFirstMessage) {
     // Check if the first message (non-system) can fit within the limit
     const firstMessageTokenCount = countTokens([messages[0]], model);
     if (firstMessageTokenCount + tokenCount < limit) {
-      limitedMessages.unshift({ ...messages[0] });
+      limitedMessages.unshift({...messages[0]});
     }
   }
 
@@ -99,7 +99,7 @@ export const updateTotalTokenUsed = (
 
   const newPromptTokens = countTokens(promptMessages, model);
   const newCompletionTokens = countTokens([completionMessage], model);
-  const { promptTokens = 0, completionTokens = 0 } =
+  const {promptTokens = 0, completionTokens = 0} =
     updatedTotalTokenUsed[model] ?? {};
 
   updatedTotalTokenUsed[model] = {
