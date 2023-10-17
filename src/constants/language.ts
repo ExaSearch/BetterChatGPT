@@ -2,6 +2,7 @@
 export const i18nLanguages = [
   // 'ar',
   'da',
+  'de',
   'en',
   'en-GB',
   'en-US',
@@ -13,6 +14,7 @@ export const i18nLanguages = [
   'ms',
   'nb',
   'ro',
+  'ru',
   'sv',
   // 'ug',
   'yue',
@@ -26,6 +28,7 @@ export const i18nLanguages = [
 export const selectableLanguages = [
   // 'ar',
   'da',
+  'de',
   // 'en',
   'en-GB',
   'en-US',
@@ -37,6 +40,7 @@ export const selectableLanguages = [
   'ms',
   'nb',
   'ro',
+  'ru',
   'sv',
   // 'ug',
   'yue',
@@ -49,6 +53,7 @@ export const selectableLanguages = [
 export const languageCodeToName = {
   // 'ar': 'العربية',
   'da': 'Dansk',
+  'de': 'Deutsch',
   'en': 'English',
   'en-GB': 'English (UK)',
   'en-US': 'English (US)',
@@ -60,6 +65,7 @@ export const languageCodeToName = {
   'ms': 'Bahasa Melayu',
   'nb': 'Norsk bokmål',
   'ro': 'Română',
+  'ru': 'Русский',
   'sv': 'Svenska',
   // 'ug': 'ئۇيغۇرچە',
   'yue': '廣東話',
