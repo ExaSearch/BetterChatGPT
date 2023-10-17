@@ -89,6 +89,7 @@ export const getChatCompletionStream = async (
   });
   if (response.status === 404 || response.status === 405) {
     const text = await response.text();
+    console.log(text);
     if (text.includes('model_not_found')) {
       throw new Error(
         text +
