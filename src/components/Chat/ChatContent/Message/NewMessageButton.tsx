@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import useStore from '@store/store';
 
 import PlusIcon from '@icon/PlusIcon';
@@ -12,7 +12,7 @@ const NewMessageButton = React.memo(
     const currentChatIndex = useStore((state) => state.currentChatIndex);
     const setCurrentChatIndex = useStore((state) => state.setCurrentChatIndex);
 
-    const addChat = () => {
+    const addChat = useCallback(() => {
       const chats = useStore.getState().chats;
       if (chats) {
         const updatedChats: ChatInterface[] = JSON.parse(JSON.stringify(chats));
@@ -28,7 +28,7 @@ const NewMessageButton = React.memo(
         setChats(updatedChats);
         setCurrentChatIndex(0);
       }
-    };
+    }, [setChats, setCurrentChatIndex]);
 
     const addMessage = () => {
       if (currentChatIndex === -1) {
@@ -44,6 +44,21 @@ const NewMessageButton = React.memo(
         setChats(updatedChats);
       }
     };
+
+    useEffect(() => {
+      const handleKeyDown = (event: KeyboardEvent) => {
+        const isMac = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+        const shortcutKey = isMac ? event.metaKey : event.ctrlKey;
+
+        if (shortcutKey && event.shiftKey && event.key === 'o') {
+          event.preventDefault();
+          addChat();
+        }
+      };
+
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [addChat]);
 
     return (
       <div
@@ -63,3 +78,4 @@ const NewMessageButton = React.memo(
 );
 
 export default NewMessageButton;
+
