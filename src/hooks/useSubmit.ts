@@ -41,7 +41,7 @@ const useSubmit = () => {
         data = await getChatCompletion(
           useStore.getState().apiEndpoint,
           message,
-          _defaultChatConfig,
+          {..._defaultChatConfig, model: 'gpt-4'},
           apiKey
         );
       }
