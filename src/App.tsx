@@ -47,10 +47,12 @@ function App() {
       // legacy local storage
       try {
         const chats: ChatInterface[] = JSON.parse(oldChats);
-        console.log('asdf chats');
-        setChats(chats);
-        // setCurrentChatIndex(0);
-        initialiseNewChat();
+        if (chats.length > 0) {
+          setChats(chats);
+          setCurrentChatIndex(0);
+        } else {
+          initialiseNewChat();
+        }
       } catch (e: unknown) {
         console.log(e);
         initialiseNewChat();
@@ -61,7 +63,6 @@ function App() {
       const chats = useStore.getState().chats;
       const currentChatIndex = useStore.getState().currentChatIndex;
       // if (!chats || chats.length === 0) {
-      initialiseNewChat();
       // }
       if (
         chats &&
@@ -69,6 +70,7 @@ function App() {
       ) {
         setCurrentChatIndex(0);
       }
+      initialiseNewChat();
     }
   }, []);
 
