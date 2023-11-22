@@ -10,6 +10,7 @@ import { ChatInterface } from '@type/chat';
 import { Theme } from '@type/theme';
 import ApiPopup from '@components/ApiPopup';
 import Toast from '@components/Toast';
+import {generateDefaultChat} from '@constants/chat';
 
 function App() {
   const initialiseNewChat = useInitialiseNewChat();
@@ -62,15 +63,23 @@ function App() {
       // existing local storage
       const chats = useStore.getState().chats;
       const currentChatIndex = useStore.getState().currentChatIndex;
-      // if (!chats || chats.length === 0) {
-      // }
+      if (!chats || chats.length === 0) {
+        initialiseNewChat();
+      }
+      if (chats && chats[0].messages.length >= 2) {
+        // Open as new chat.
+        const newChatsWithNewChatAtStart = [
+          generateDefaultChat(),
+          ...chats,
+        ];
+        setChats(newChatsWithNewChatAtStart);
+      }
       if (
         chats &&
         !(currentChatIndex >= 0 && currentChatIndex < chats.length)
       ) {
         setCurrentChatIndex(0);
       }
-      initialiseNewChat();
     }
   }, []);
 
