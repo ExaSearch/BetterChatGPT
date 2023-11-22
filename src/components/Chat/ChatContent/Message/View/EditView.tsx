@@ -130,6 +130,7 @@ const EditView = ({
       >
         <textarea
           ref={textareaRef}
+          autoFocus
           className='m-0 resize-none rounded-lg bg-transparent overflow-y-hidden focus:ring-0 focus-visible:ring-0 leading-7 w-full placeholder:text-gray-500/40'
           onChange={(e) => {
             _setContent(e.target.value);
