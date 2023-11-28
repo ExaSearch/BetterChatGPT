@@ -103,6 +103,15 @@ const useSubmit = () => {
       let reading = true;
       let partial = '';
 
+      // TODO: have this dynamically update
+      let delayPerCharacter = 4;
+      const skipStreamDelay = (e: KeyboardEvent)=>{
+        if(e.code === 'Escape'){
+          delayPerCharacter = 0;
+        }
+      };
+      window.addEventListener('keypress', skipStreamDelay);
+
       while (reading && useStore.getState().generating) {
         const { done, value } = await reader.read();
         const result = parseEventSource(
@@ -123,9 +132,6 @@ const useSubmit = () => {
             return output;
           }, '');
 
-          // TODO: have this dynamically update
-          const delayPerCharacter = 4;
-
           for (const c of resultString.split('')) {
             await new Promise((resolve) => setTimeout(resolve, delayPerCharacter));
             const updatedChats: ChatInterface[] = JSON.parse(JSON.stringify(useStore.getState().chats));
@@ -135,6 +141,8 @@ const useSubmit = () => {
           }
         }
       }
+
+      window.removeEventListener('keypress', skipStreamDelay);
 
       if (useStore.getState().generating) {
         reader.cancel('Cancelled by user');
