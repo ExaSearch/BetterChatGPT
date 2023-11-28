@@ -125,17 +125,14 @@ const useSubmit = () => {
 
           // TODO: have this dynamically update
           const delayPerCharacter = 4;
-          let delay = 0;
 
-          resultString.split('').forEach((character) => {
-            setTimeout(() => {
-              const updatedChats: ChatInterface[] = JSON.parse(JSON.stringify(useStore.getState().chats));
-              const updatedMessages = updatedChats[currentChatIndex].messages;
-              updatedMessages[updatedMessages.length - 1].content += character;
-              setChats(updatedChats);
-            }, delay);
-            delay += delayPerCharacter;
-          });
+          for (const c of resultString.split('')) {
+            await new Promise((resolve) => setTimeout(resolve, delayPerCharacter));
+            const updatedChats: ChatInterface[] = JSON.parse(JSON.stringify(useStore.getState().chats));
+            const updatedMessages = updatedChats[currentChatIndex].messages;
+            updatedMessages[updatedMessages.length - 1].content += c;
+            setChats(updatedChats);
+          }
         }
       }
 
